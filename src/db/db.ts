@@ -8,10 +8,13 @@ export class ShuatiDB extends Dexie {
 
   constructor() {
     super('shuati-db');
-    this.version(1).stores({
+    this.version(2).stores({
       questions: 'id, type, category, difficulty',
       progress: '++id, questionId, isCorrect, timestamp',
       examResults: '++id, score, date',
+    }).upgrade(async (tx) => {
+      // Clear old unshuffled questions to force re-seed with shuffled options
+      await tx.table('questions').clear();
     });
   }
 }

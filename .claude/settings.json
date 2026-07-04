@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -o '.{0,30}import\\\\.meta.{0,30}' \"c:/Users/62525/Desktop/claude code-gcs/刷题神器/dist/index.html\")",
+      "Bash(npx vite *)",
+      "Bash(start \"\" \"c:\\\\Users\\\\62525\\\\Desktop\\\\claude code-gcs\\\\刷题神器\\\\dist\\\\index.html\")",
+      "Bash(npx tsc *)",
+      "Bash(awk '{print $NF}')",
+      "Bash(gh auth *)",
+      "Bash(git add *)"
+    ]
+  }
+}
