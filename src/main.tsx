@@ -4,6 +4,7 @@ import App from './App';
 import './index.css';
 import { db } from './db/db';
 import { seedQuestions } from './db/seed';
+import type { Question } from './types';
 
 async function init() {
   const count = await db.questions.count();
@@ -11,7 +12,7 @@ async function init() {
     try {
       const mod = await import('./data/questions.json');
       const questions = mod.default || mod;
-      await seedQuestions(Array.isArray(questions) ? questions : []);
+      await seedQuestions(Array.isArray(questions) ? questions as Question[] : []);
     } catch {
       console.warn('questions.json not found, skipping seed');
     }
