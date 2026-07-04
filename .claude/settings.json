@@ -7,7 +7,15 @@
       "Bash(npx tsc *)",
       "Bash(awk '{print $NF}')",
       "Bash(gh auth *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git config *)",
+      "Bash(winget install *)",
+      "Read(//c/Users/62525/**)",
+      "Read(//c/Users/62525/.config/gh/**)",
+      "Bash(cmd.exe /c \"cmdkey /list\")",
+      "Bash(npm install *)",
+      "Read(//c/Program Files/GitHub CLI\" 2>/dev/null; ls /c/**)"
     ]
   }
 }
