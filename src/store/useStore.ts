@@ -32,7 +32,7 @@ interface AppState {
   // Actions - Practice
   setPracticeFilter: (filter: Partial<PracticeFilter>) => void;
   setPracticeOrder: (order: PracticeOrder) => void;
-  startPractice: (questions: Question[]) => void;
+  startPractice: (questions: Question[], startIndex?: number) => void;
   nextQuestion: () => void;
   prevQuestion: () => void;
   finishPractice: () => void;
@@ -83,10 +83,10 @@ export const useStore = create<AppState>((set, get) => ({
 
   setPracticeOrder: (order) => set({ practiceOrder: order }),
 
-  startPractice: (questions) =>
+  startPractice: (questions, startIndex = 0) =>
     set({
       practiceQuestions: get().practiceOrder === 'random' ? shuffle(questions) : questions,
-      practiceIndex: 0,
+      practiceIndex: Math.max(0, Math.min(startIndex, questions.length - 1)),
       practiceStartTime: Date.now(),
       practiceDone: false,
     }),
