@@ -28,7 +28,7 @@ export default function Practice() {
   const [showResult, setShowResult] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [results, setResults] = useState<{ correct: number; total: number }>({ correct: 0, total: 0 });
-  const [startIndex, setStartIndex] = useState(1);
+  const [startIndex, setStartIndex] = useState('1');
 
   const loadQuestions = useCallback(async () => {
     let collection = db.questions.toCollection();
@@ -41,7 +41,8 @@ export default function Practice() {
       alert('没有匹配的题目，请调整筛选条件');
       return;
     }
-    const startIdx = practiceOrder === 'sequential' ? Math.max(0, startIndex - 1) : 0;
+    const idx = parseInt(startIndex) || 1;
+    const startIdx = practiceOrder === 'sequential' ? Math.max(1, Math.min(idx, questions.length)) - 1 : 0;
     startPractice(questions, startIdx);
     setPhase('active');
     setResults({ correct: 0, total: 0 });
@@ -178,7 +179,7 @@ export default function Practice() {
                   type="number"
                   min={1}
                   value={startIndex}
-                  onChange={(e) => setStartIndex(Math.max(1, parseInt(e.target.value) || 1))}
+                  onChange={(e) => setStartIndex(e.target.value)}
                   className="w-20 border rounded-lg px-3 py-1.5 text-sm text-center"
                 />
                 <span className="text-sm text-gray-600">题开始</span>
